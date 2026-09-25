@@ -10,7 +10,12 @@ export default async function handler(req, res) {
   }
   
   try {
-    const processedText = userText.split('').reverse().join('');;
+
+    //aqui eh realizado qualquer processamento de back end desejado
+    const processedText = userText.split('').reverse().join('');
+    //ateh aqui
+    
+    
     return res.json({ result: processedText });
   } catch (error) {
     return res.status(500).json({ error: 'Erro interno do servidor' });
