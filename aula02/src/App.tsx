@@ -28,9 +28,15 @@ function App() {
       const data = await response.json();
       setResponseText(JSON.stringify(data.result, null, 2));
     
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Erro ao enviar o texto:', error);
-      setResponseText(error.message || 'Sem resposta do servidor.');
+
+      const message =
+        error instanceof Error
+          ? error.message
+          : 'Sem resposta do servidor.';
+
+      setResponseText(message);
     } finally {
       setLoading(false);
     }
