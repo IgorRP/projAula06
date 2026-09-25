@@ -12,7 +12,7 @@ function App() {
     try {
       console.log('Sending text to server:', inputText);
 
-      const response = await fetch('/api/server', {
+      const response = await fetch('/api/getter01', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
