@@ -1,10 +1,8 @@
-import express from 'express';
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
-const app = express();
-
-app.use(express.json());
-
-app.post('/api/server', async (req, res) => {
   const userText = req.body.text;
 
   if (!userText) {
@@ -15,8 +13,7 @@ app.post('/api/server', async (req, res) => {
     const processedText = userText;
     return res.json({ result: processedText });
   } catch (error) {
+    console.error('Server error:', error);
     return res.status(500).json({ error: 'Erro interno do servidor' });
   }
-});
-
-export default app;
+}
