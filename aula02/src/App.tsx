@@ -12,7 +12,7 @@ function App() {
     try {
       console.log('Sending text to server:', inputText);
 
-      const response = await fetch('/api/transform', {
+      const response = await fetch('/api/server', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,10 +43,8 @@ function App() {
 
   return (
     <>
-      <h1>Get started3</h1>
-
       <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-        <h2>Vercel React + Express Link 07</h2>
+        <h2>Envio de texto para processamento no back-end</h2>
         
         <textarea
           value={inputText}
