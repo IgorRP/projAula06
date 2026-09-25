@@ -10,8 +10,7 @@ function App() {
 
     setLoading(true);
     try {
-      console.log('Sending text to server:', inputText);
-
+      
       const response = await fetch('/api/getter01', {
         method: 'POST',
         headers: {
@@ -22,19 +21,16 @@ function App() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.error || `Request failed with status ${response.status}`);
+        throw new Error(errorData.error || `Requisição falhou com status ${response.status}`);
       }
 
       const data = await response.json();
-
-      console.log(JSON.stringify(data.result, null, 2));
-
       setResponseText(JSON.stringify(data.result, null, 2));
+
     } catch (error) {
-      console.error('Error sending text:', error);
       const message = error instanceof Error
         ? error.message
-        : 'Failed to get a response from the server.';
+        : 'Não foi possível obter uma resposta do servidor.';
       setResponseText(message);
     } finally {
       setLoading(false);
@@ -57,12 +53,12 @@ function App() {
         <br /><br />
         
         <button onClick={handleSubmit} disabled={loading}>
-          {loading ? 'Sending...' : 'Submit to Server'}
+          {loading ? 'Enviando...' : 'Enviar para o servidor'}
         </button>
 
         <hr />
 
-        <h3>Server Response:</h3>
+        <h3>Resposta do servidor:</h3>
         <div style={{ padding: '10px', background: '#f0f0f0', borderRadius: '4px', minHeight: '40px' }}>
           {responseText}
         </div>
